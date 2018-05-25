@@ -1,6 +1,8 @@
 import os
 import subprocess
 
+import config
+
 
 class color:
    PURPLE = '\033[95m'
