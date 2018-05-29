@@ -39,7 +39,7 @@ while (opcao != 0):
    print ('')
 
    if ( opcao == 1 ):
-        mem() 
+        mem()
    elif (opcao == 2):
         dsk()
 
