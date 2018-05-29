@@ -1,0 +1,47 @@
+Exemplo de uso
+
+https://wiki.python.org.br/EnviarEmail
+
+
+def main():
+    # Alterar estes valores antes de instalar na Wagonlit!!!
+    to = "deFulano@dominio.com.br"
+    orig = "paraBeltrano@outroDominio.com.br"
+    subject = "Teste de e-mail"
+    filename = "f0001.ped"
+
+    body = """
+    Segue em anexo o arquivo %s com um pedido 
+    criptografado. Por obséquio, salve o arquivo no diretório
+    c:\gpr\pedidos (ou no diretório onde foi instalado o
+    aplicativo de visualização distribuído pela GPr Sistemas)
+    e dispare pedidos.py para visualizar seu conteúdo.
+
+    Atenciosamente,
+    GPr Sistemas Ltda
+    """%(filename)
+
+    attach = """
+    Name:               Fulano de tal
+    Endereço:           Rua da Amargura 1313
+    Cartão de Crédito:  1243543412356
+
+    etc etc etc
+    """
+
+    data1 = StringIO(body)
+    data2 = StringIO(attach)
+
+    sendmail(_subject = subject,
+                     _from = orig,
+                     _to = to,
+                     _attachments = (('text', data1,
+                                      'text/plain', None),
+                                     ('attach',data2,
+                                      'EncryptedContent.\
+ENCRYPTED',
+                                      filename)))
+       
+if __name__=="__main__":
+    main()
+

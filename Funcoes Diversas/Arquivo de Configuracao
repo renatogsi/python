@@ -1,0 +1,31 @@
+ArquivoDeConfiguracao
+
+Uma maneira simples de criarmos arquivos de configuração é utilizar um arquivo python chamado "config.py" e então importarmos ele, por exemplo:
+
+
+# este arquivo: config.py:
+
+db_host = "db.server.com"
+db_port = 1234
+db_user = 'user'
+
+
+
+
+
+# este arquivo: my_program.py:
+
+import config
+
+db_connect( config.db_host, config.db_port, config.db_user )
+
+Se quisermos que nosso programa salve as alterações de volta, podemos fazer algo simples, como:
+Esconder número das linhas
+
+# crie/altere os valores que quiser em config, ex:
+#    config.db_password = 'abc'
+
+config_file = open( "config.py", "w" )
+for opc in dir( config ):
+   config_file.write( "%s=%r\n" % ( opc, getattr( config, opc ) ) )
+
