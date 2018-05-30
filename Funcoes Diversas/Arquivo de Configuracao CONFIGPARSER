@@ -13,9 +13,9 @@ user = user
 Arquivo Python
 
 
-import ConfigParser
+import configparser
 
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.read("db.conf")
 
 db_connect( config.get("DB", "host"),
@@ -27,9 +27,9 @@ Se quisermos que nosso programa salve as alterações de volta, podemos fazer de
 
 
 
-import ConfigParser
+import configparser
 
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 config.add_section("DB")
 config.set("DB", "host", host)
 config.set("DB", "port", port)
