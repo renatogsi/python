@@ -1,7 +1,19 @@
 import os
 import subprocess
+import configparser
+    
+configfilename = 'config.db'
+    
+if (os.path.isfile(configfilename) == False):
+    print("\nAquivo de configuracao {} Inexistente!!\n".format(configfilename))
+    quit()
+    
+config = configparser.ConfigParser()
+config.read(configfilename")
+    
+    email_user = config.get("EMAIL", "username")
+    email_password = config.get("EMAIL", "password")
 
-import config
 
 
 class color:
@@ -22,7 +34,7 @@ def mem ():
 
     cor_utilizada = color.BOLD
 
-    if ( int(t2[1]) < config.mem_conf ):
+    if ( int(t2[1]) < config.get("MEM", "mem_conf" ):
         cor_utilizada = color.RED
 
     print (color.BOLD+'Memoria utilizada: {}\t\tMemoria Livre: {}'.format(t2[0],cor_utilizada+t2[1])+color.END)
