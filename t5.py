@@ -2,6 +2,8 @@ import os
 import subprocess
 import configparser
     
+import enviaremail
+
 configfilename = 'config.db'
     
 if (os.path.isfile(configfilename) == False):
@@ -9,12 +11,8 @@ if (os.path.isfile(configfilename) == False):
     quit()
     
 config = configparser.ConfigParser()
-config.read(configfilename")
+config.read(configfilename)
     
-    email_user = config.get("EMAIL", "username")
-    email_password = config.get("EMAIL", "password")
-
-
 
 class color:
    PURPLE = '\033[95m'
@@ -34,8 +32,10 @@ def mem ():
 
     cor_utilizada = color.BOLD
 
-    if ( int(t2[1]) < config.get("MEM", "mem_conf" ):
+
+    if ( int(t2[1]) < int(config.get("MEM", "mem_conf" ))):
         cor_utilizada = color.RED
+        enviaremail.sendmail('renatogsi2@gmail.com', 'Falta de memoria', 'Memoria atingiu '+t2[1], '')
 
     print (color.BOLD+'Memoria utilizada: {}\t\tMemoria Livre: {}'.format(t2[0],cor_utilizada+t2[1])+color.END)
 
